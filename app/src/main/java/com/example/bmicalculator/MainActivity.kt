@@ -84,7 +84,7 @@ private fun calculateBMI(metric: Boolean, iWeight: Double, iHeight: Double): Int
     if (!metric) {
         bmi = (703*iWeight)/ iHeight.pow(2.0)
     }
-    return bmi.roundToInt()
+    return bmi.toInt()
 }
 
 @Composable
@@ -120,7 +120,8 @@ fun BMILayout() {
     var inputHeight by remember { mutableStateOf("") }
     val iHeight = inputHeight.toDoubleOrNull() ?: 0.0
 
-    val bmi = calculateBMI(metric, iWeight, iHeight)
+    val bmi = if(iHeight > 0.0 && iWeight > 0.0) calculateBMI(metric, iWeight, iHeight) else 0
+
 
     Column(
         modifier = Modifier
