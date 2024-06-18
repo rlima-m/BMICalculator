@@ -80,9 +80,12 @@ fun EditNumberField(
 }
 
 private fun calculateBMI(metric: Boolean, iWeight: Double, iHeight: Double): Int {
-    var bmi = iWeight/ iHeight.pow(2.0)
-    if (!metric) {
-        bmi = (703*iWeight)/ iHeight.pow(2.0)
+    var bmi = 0.0
+    if(iHeight > 0.0 && iWeight > 0.0) {
+        bmi = iWeight / iHeight.pow(2.0)
+        if (!metric) {
+            bmi = (703 * iWeight) / iHeight.pow(2.0)
+        }
     }
     return bmi.roundToInt()
 }
@@ -105,6 +108,37 @@ fun MetricSystemRow(metric: Boolean,
         )
     }
 }
+
+
+// Isto está claramente errado
+//Imma think about it ig
+/*
+@Composable
+fun WeightRow(iWeight: Double,
+              modifier: Modifier = Modifier){
+    if (metric == true){
+        EditNumberField(
+            labelText = stringResource(R.string.weight),
+            value = inputWeight,
+            onValueChange = { inputWeight = it },
+            modifier = Modifier
+                .padding(bottom = 32.dp)
+                .fillMaxWidth()
+        )
+    }else{
+        EditNumberField(
+            labelText = "Weight (lbs)",
+            value = inputWeight,
+            onValueChange = { inputWeight = it },
+            modifier = Modifier
+                .padding(bottom = 32.dp)
+                .fillMaxWidth()
+        )
+    }
+
+}
+*/
+ */
 
 @Composable
 fun BMILayout() {
@@ -160,7 +194,7 @@ fun BMILayout() {
         MetricSystemRow(
             metric = metric,
             onMetricChanged = { metric = it },
-            modifier = Modifier.padding(bottom = 32.dp)
+            modifier = Modifier.padding(bottom = 36.dp)
         )
 
 
