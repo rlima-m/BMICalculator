@@ -36,9 +36,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bmicalculator.ui.theme.BMICalculatorTheme
-import java.lang.Math.pow
-import java.lang.Math.toIntExact
-import java.text.NumberFormat
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,11 +58,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun EditNumberField(
+    modifier: Modifier = Modifier,
     labelText: String,
     value: String,
     onValueChange: (String) -> Unit,
     action: ImeAction = ImeAction.Next,
-    modifier: Modifier = Modifier
 ) {
 
     TextField(
@@ -79,23 +78,13 @@ fun EditNumberField(
 
     )
 }
-//
-//
-//NOT DONE STOPPED HALF WAY
-//
-//
 
-// JUST WRONGLY MADE FUNCTION
-//WILL BE BACK
-private fun calculateBMI(metric: Boolean, i_age: Int, i_weight: Double, i_height: Double): String {
-    //var bmi by remember { mutableStateOf("") }
-    //val i_weight = input_weight.toDoubleOrNull() ?: 0.0
-    var bmi = i_weight/pow(i_height, 2.0)
+private fun calculateBMI(metric: Boolean, iWeight: Double, iHeight: Double): Int {
+    var bmi = iWeight/ iHeight.pow(2.0)
     if (!metric) {
-        bmi = (703*i_weight)/pow(i_height, 2.0)
+        bmi = (703*iWeight)/ iHeight.pow(2.0)
     }
-    bmi = bmi.toInt()
-    return bmi
+    return bmi.roundToInt()
 }
 
 @Composable
@@ -122,16 +111,16 @@ fun BMILayout() {
 
     var metric by remember { mutableStateOf(true) }
 
-    var input_age by remember { mutableStateOf("") }
-    val i_age = input_age.toIntOrNull() ?: 0
+    var inputAge by remember { mutableStateOf("") }
+    //val iAge = inputAge.toIntOrNull() ?: 0
 
-    var input_weight by remember { mutableStateOf("") }
-    val i_weight = input_weight.toDoubleOrNull() ?: 0.0
+    var inputWeight by remember { mutableStateOf("") }
+    val iWeight = inputWeight.toDoubleOrNull() ?: 0.0
 
-    var input_height by remember { mutableStateOf("") }
-    val i_height = input_height.toDoubleOrNull() ?: 0.0
+    var inputHeight by remember { mutableStateOf("") }
+    val iHeight = inputHeight.toDoubleOrNull() ?: 0.0
 
-    val bmi = calculateBMI(metric ,i_age, i_weight, i_height)
+    val bmi = calculateBMI(metric, iWeight, iHeight)
 
     Column(
         modifier = Modifier
@@ -144,8 +133,8 @@ fun BMILayout() {
     ) {
         EditNumberField(
             labelText = stringResource(R.string.age_in_years),
-            value = input_age,
-            onValueChange = { input_age = it },
+            value = inputAge,
+            onValueChange = { inputAge = it },
             modifier = Modifier
                 .padding(top = 32.dp)
                 .padding(bottom = 32.dp)
@@ -153,16 +142,16 @@ fun BMILayout() {
         )
         EditNumberField(
             labelText = stringResource(R.string.weight),
-            value = input_weight,
-            onValueChange = { input_weight = it },
+            value = inputWeight,
+            onValueChange = { inputWeight = it },
             modifier = Modifier
                 .padding(bottom = 32.dp)
                 .fillMaxWidth()
         )
         EditNumberField(
             labelText = stringResource(R.string.height),
-            value = input_height,
-            onValueChange = { input_height = it },
+            value = inputHeight,
+            onValueChange = { inputHeight = it },
             modifier = Modifier
                 .padding(bottom = 32.dp)
                 .fillMaxWidth()
