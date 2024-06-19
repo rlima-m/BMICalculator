@@ -7,4 +7,7 @@
     <string name="bmi_value_d">BMI Value: %d</string>
     <string name="metric_system">Metric system?</string>
     <string name="age_in_years">Age (In Years)</string>
+    <string name="bmi_calculator">BMI Calculator</string>
+    <string name="weight_kg_lbs">Weight (kg / lbs)</string>
+    <string name="height_m_in">Height (m / in)</string>
 </resources>
