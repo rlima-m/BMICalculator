@@ -23,6 +23,8 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -53,12 +55,16 @@ fun EditNumberField(
     onValueChange: (String) -> Unit,
     action: ImeAction = ImeAction.Next,
 ) {
-
     TextField(
         value = value,
         onValueChange = onValueChange,
         singleLine = true,
         label = { Text (text = labelText) },
+        colors = TextFieldDefaults.colors(
+            unfocusedContainerColor = Color(red = 154, green = 152, blue = 204, alpha = 173),
+            focusedContainerColor = Color(red = 186, green = 184, blue = 228, alpha = 255),
+            focusedIndicatorColor = Color(red = 10, green = 7, blue = 97, alpha = 255)
+        ),
         keyboardOptions = KeyboardOptions.Default.copy(
             keyboardType = KeyboardType.Number,
             imeAction = action
@@ -101,11 +107,11 @@ fun MetricSystemRow(metric: Boolean,
             checked = metric,
             onCheckedChange = onMetricChanged,
             colors = SwitchDefaults.colors(
-                checkedThumbColor = Color(red = 122, green = 72, blue = 122, alpha = 255),
-                checkedTrackColor = Color(red = 77, green = 51, blue = 124, alpha = 255),
+                checkedThumbColor = Color(red = 10, green = 7, blue = 97, alpha = 255),
+                checkedTrackColor = Color(red = 89, green = 88, blue = 143, alpha = 255),
                 checkedBorderColor = Color.Black,
-                uncheckedThumbColor = Color(red = 200, green = 109, blue = 200),
-                uncheckedTrackColor = Color(red = 77, green = 51, blue = 124),
+                uncheckedThumbColor = Color(red = 10, green = 7, blue = 97, alpha = 255),
+                uncheckedTrackColor = Color(red = 89, green = 88, blue = 143, alpha = 255),
                 uncheckedBorderColor = Color.Black,
             )
         )
@@ -140,7 +146,7 @@ fun BMICalculatorLayout(navController : NavController) {
                 .fillMaxWidth()
                 .requiredHeightIn(min = 40.dp, max = 55.dp)
                 .background(
-                    color = Color(red = 200, green = 109, blue = 200),
+                    color = Color(red = 89, green = 88, blue = 143, alpha = 255),
                 )
                 .border(
                     BorderStroke(width = 3.dp, color = Color.Black),
@@ -199,11 +205,7 @@ fun BMICalculatorLayout(navController : NavController) {
             Button(
                 onClick = { navController.navigate("results") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(
-                        red = 200,
-                        green = 109,
-                        blue = 200
-                    )
+                    containerColor = Color(red = 89, green = 88, blue = 143, alpha = 255)
                 ),
                 border = BorderStroke(width = 3.dp, color = Color.Black)
             ) {

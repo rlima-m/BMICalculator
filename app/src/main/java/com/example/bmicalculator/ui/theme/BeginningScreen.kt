@@ -50,7 +50,7 @@ fun BMIBeginningLayout(navController : NavController) {
                 .fillMaxWidth()
                 .requiredHeightIn(min = 40.dp, max = 55.dp)
                 .background(
-                    color = Color(red = 200, green = 109, blue = 200),
+                    color = Color(red = 89, green = 88, blue = 143, alpha = 255),
                 )
                 .border(
                     BorderStroke(width = 3.dp, color = Color.Black),
@@ -78,11 +78,7 @@ fun BMIBeginningLayout(navController : NavController) {
                 onClick = {
                     navController.navigate("calculator") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(
-                        red = 200,
-                        green = 109,
-                        blue = 200
-                    )
+                    containerColor = Color(red = 89, green = 88, blue = 143, alpha = 255)
                 ),
                 border = BorderStroke(width = 3.dp, color = Color.Black)
             ) {
