@@ -10,4 +10,5 @@
     <string name="bmi_calculator">BMI Calculator</string>
     <string name="weight_kg_lbs">Weight (kg / lbs)</string>
     <string name="height_m_in">Height (m / in)</string>
+    <string name="head_to_calculator">Head to calculator</string>
 </resources>
