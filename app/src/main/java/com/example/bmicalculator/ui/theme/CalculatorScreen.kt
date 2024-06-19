@@ -45,8 +45,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.bmicalculator.R
 import kotlin.math.pow
 
-
-
 @Composable
 fun EditNumberField(
     modifier: Modifier = Modifier,
@@ -114,7 +112,7 @@ fun MetricSystemRow(metric: Boolean,
     }
 }
 
-
+var bmi : Int = 0
 
 @Composable
 fun BMICalculatorLayout(navController : NavController) {
@@ -130,8 +128,7 @@ fun BMICalculatorLayout(navController : NavController) {
     var inputHeight by remember { mutableStateOf("") }
     val iHeight = inputHeight.toDoubleOrNull() ?: 0.0
 
-    val bmi = if(iHeight > 0.0 && iWeight > 0.0) calculateBMI(metric, iWeight, iHeight) else 0
-
+    bmi = if(iHeight > 0.0 && iWeight > 0.0) calculateBMI(metric, iWeight, iHeight) else 0
 
     Column(modifier = Modifier
         .border(
@@ -227,6 +224,9 @@ fun BMICalculatorLayout(navController : NavController) {
             }
         }
     }
+}
+fun getBMI(): Int {
+    return bmi
 }
 
 

@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeightIn
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -37,8 +39,11 @@ import com.example.bmicalculator.R
 @Composable
 fun BMIResultLayout() {
 
+    val bmi = getBMI()
+
     Column(modifier = Modifier
         .fillMaxHeight()
+        .fillMaxWidth()
         .border(
             BorderStroke(width = 3.dp, color = Color.Black),
         )
@@ -68,27 +73,29 @@ fun BMIResultLayout() {
                 .statusBarsPadding()
                 .padding(horizontal = 40.dp, vertical = 60.dp)
                 .verticalScroll(rememberScrollState()) //Important
-                .safeDrawingPadding(),
+                .safeDrawingPadding()
+                .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
 
             Text(
-                text = "Your Results:",
+                text = stringResource(R.string.your_results),
                 fontFamily = FontFamily.Monospace,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
-                    .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+                    .padding(10.dp)
             )
+
             Text(
-                text = stringResource(R.string.variable),
+                text = stringResource(R.string.variable, bmi),
                 fontFamily = FontFamily.Monospace,
-                fontSize = 15.sp,
+                fontSize = 30.sp,
                 fontWeight = FontWeight.Light,
                 modifier = Modifier
                     .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
-
             )
         }
     }
@@ -98,6 +105,6 @@ fun BMIResultLayout() {
 @Composable
 fun ResultPreview() {
     BMICalculatorTheme {
-        BMIBeginningLayout(rememberNavController())
+        BMIResultLayout()
     }
 }
