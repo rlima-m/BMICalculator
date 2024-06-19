@@ -17,7 +17,10 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,11 +33,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.bmicalculator.R
+import java.time.format.TextStyle
 
 
 @Composable
-fun BMIResultLayout() {
+fun BMIResultLayout(navController : NavController) {
 
     val bmi = getBMI()
     val age = getAge()
@@ -170,6 +176,30 @@ fun BMIResultLayout() {
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .wrapContentWidth(Alignment.CenterHorizontally)
+                        .padding(bottom = 25.dp)
+                )
+            }
+            Button(
+                onClick = {navController.navigate("calculator") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(red = 89, green = 88, blue = 143, alpha = 255)
+                ),
+                border = BorderStroke(width = 3.dp, color = Color.Black),
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.backwordsarrow),
+                    contentDescription = "Arrow",
+                    Modifier.size(50.dp)
+                )
+                Text(
+                    text = " Calculate Again",
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 15.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.ExtraBold,
+                    modifier = Modifier
+                        .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
+
                 )
             }
         }
@@ -180,6 +210,6 @@ fun BMIResultLayout() {
 @Composable
 fun ResultPreview() {
     BMICalculatorTheme {
-        BMIResultLayout()
+        BMIResultLayout(rememberNavController())
     }
 }

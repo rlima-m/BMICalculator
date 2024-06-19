@@ -126,8 +126,8 @@ fun BMICalculatorLayout(navController : NavController) {
     var metric by remember { mutableStateOf(true) }
 
     var inputAge by remember { mutableStateOf("") }
-    val got_age = inputAge.toIntOrNull() ?:0
-    age = got_age
+    val gotAge = inputAge.toIntOrNull() ?:0
+    age = gotAge
 
     var inputWeight by remember { mutableStateOf("") }
     val iWeight = inputWeight.toDoubleOrNull() ?: 0.0
@@ -138,6 +138,7 @@ fun BMICalculatorLayout(navController : NavController) {
     bmi = if(iHeight > 0.0 && iWeight > 0.0) calculateBMI(metric, iWeight, iHeight) else 0
 
     Column(modifier = Modifier
+        .verticalScroll(rememberScrollState()) //Important
         .border(
             BorderStroke( width = 3.dp, color = Color.Black),
         )
@@ -166,7 +167,6 @@ fun BMICalculatorLayout(navController : NavController) {
             modifier = Modifier
                 .statusBarsPadding()
                 .padding(horizontal = 40.dp, vertical = 60.dp)
-                .verticalScroll(rememberScrollState()) //Important
                 .safeDrawingPadding(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
@@ -211,10 +211,11 @@ fun BMICalculatorLayout(navController : NavController) {
                 border = BorderStroke(width = 3.dp, color = Color.Black)
             ) {
                 Text(
-                    text = "Calculate now",
+                    text = stringResource(R.string.calculate_now),
                     fontFamily = FontFamily.Monospace,
                     fontSize = 15.sp,
-                    fontWeight = FontWeight.Light,
+                    color = Color.Black,
+                    fontWeight = FontWeight.ExtraBold,
                     modifier = Modifier
                         .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
 

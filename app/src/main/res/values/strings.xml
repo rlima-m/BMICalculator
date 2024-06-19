@@ -21,4 +21,6 @@
     <string name="severely_obese">Oh gee. Looks like your BMI is 40 or over, please speak with a healthcare professional about this.</string>
     <string name="zerobmi">You know you didn\'t input thing right, right?</string>
     <string name="teen_child_disclaimer">Please note that if you\'re either a child or teen, this may not apply to you the same way.</string>
+    <string name="calculate_now">"Calculate now "</string>
+    <string name="disclaimer">** Disclaimer **</string>
 </resources>

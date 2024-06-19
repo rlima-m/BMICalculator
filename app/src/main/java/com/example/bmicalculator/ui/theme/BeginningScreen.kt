@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,12 +36,12 @@ import androidx.navigation.compose.rememberNavController
 import com.example.bmicalculator.R
 
 
-
 @Composable
 fun BMIBeginningLayout(navController : NavController) {
 
     Column(modifier = Modifier
         .fillMaxHeight()
+        .verticalScroll(rememberScrollState()) //Important
         .border(
             BorderStroke(width = 3.dp, color = Color.Black),
         )
@@ -69,11 +70,30 @@ fun BMIBeginningLayout(navController : NavController) {
             modifier = Modifier
                 .statusBarsPadding()
                 .padding(horizontal = 40.dp, vertical = 60.dp)
-                .verticalScroll(rememberScrollState()) //Important
                 .safeDrawingPadding(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
+
+            Text(
+                text = stringResource(R.string.disclaimer),
+                fontFamily = FontFamily.Monospace,
+                fontSize = 15.sp,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier
+                    .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
+
+            )
+            Text(
+                text = stringResource(R.string.BMI_disclaimer_text),
+                fontFamily = FontFamily.Monospace,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Light,
+                textAlign = TextAlign.Justify,
+                modifier = Modifier
+                    .padding(start = 10.dp, top = 10.dp, bottom = 40.dp),
+            )
+
             Button(
                 onClick = {
                     navController.navigate("calculator") },
@@ -86,7 +106,9 @@ fun BMIBeginningLayout(navController : NavController) {
                     text = stringResource(R.string.head_to_calculator),
                     fontFamily = FontFamily.Monospace,
                     fontSize = 15.sp,
-                    fontWeight = FontWeight.Light,
+                    color = Color.Black,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.ExtraBold,
                     modifier = Modifier
                         .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
 
