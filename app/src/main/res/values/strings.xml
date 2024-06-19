@@ -11,4 +11,6 @@
     <string name="weight_kg_lbs">Weight (kg / lbs)</string>
     <string name="height_m_in">Height (m / in)</string>
     <string name="head_to_calculator">Head to calculator</string>
+    <string name="BMI_disclaimer_text">Body mass index (BMI) is a tool that healthcare providers use to estimate the amount of body fat by using your height and weight measurements. It can help assess risk factors for certain health conditions. The BMI is not always an accurate representation of body fatness. BMI alone does not diagnose health. Healthcare providers use BMI and other tools and tests to assess someone’s health status and risks. Don\'t take this test at face value, pair it with further tests.</string>
+    <string name="variable">%d</string>
 </resources>

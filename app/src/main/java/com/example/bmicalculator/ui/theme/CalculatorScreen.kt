@@ -40,6 +40,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.bmicalculator.R
 import kotlin.math.pow
 
@@ -68,7 +70,7 @@ fun EditNumberField(
     )
 }
 
-private fun calculateBMI(metric: Boolean, iWeight: Double, iHeight: Double): Int {
+fun calculateBMI(metric: Boolean, iWeight: Double, iHeight: Double): Int {
     var bmi = iWeight/ iHeight.pow(2.0)
     if (!metric) {
         bmi = (703*iWeight)/ iHeight.pow(2.0)
@@ -112,8 +114,10 @@ fun MetricSystemRow(metric: Boolean,
     }
 }
 
+
+
 @Composable
-fun BMICalculatorLayout() {
+fun BMICalculatorLayout(navController : NavController) {
 
     var metric by remember { mutableStateOf(true) }
 
@@ -126,11 +130,8 @@ fun BMICalculatorLayout() {
     var inputHeight by remember { mutableStateOf("") }
     val iHeight = inputHeight.toDoubleOrNull() ?: 0.0
 
-    //val bmi = if(iHeight > 0.0 && iWeight > 0.0) calculateBMI(metric, iWeight, iHeight) else 0
+    val bmi = if(iHeight > 0.0 && iWeight > 0.0) calculateBMI(metric, iWeight, iHeight) else 0
 
-
-    /// AQUELE ROSA E PESSIMO
-    /// Falta mudar
 
     Column(modifier = Modifier
         .border(
@@ -199,7 +200,7 @@ fun BMICalculatorLayout() {
                 modifier = Modifier.padding(bottom = 32.dp)
             )
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("results") },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(
                         red = 200,
@@ -228,10 +229,11 @@ fun BMICalculatorLayout() {
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun CalculatorPreview() {
     BMICalculatorTheme {
-        BMICalculatorLayout()
+        BMICalculatorLayout(rememberNavController())
     }
 }

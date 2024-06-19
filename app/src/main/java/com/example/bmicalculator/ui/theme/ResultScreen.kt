@@ -30,14 +30,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.bmicalculator.R
 
 
-
 @Composable
-fun BMIBeginningLayout(navController : NavController) {
+fun BMIResultLayout() {
 
     Column(modifier = Modifier
         .fillMaxHeight()
@@ -74,40 +72,31 @@ fun BMIBeginningLayout(navController : NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
-            Button(
-                onClick = {
-                    navController.navigate("calculator") },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(
-                        red = 200,
-                        green = 109,
-                        blue = 200
-                    )
-                ),
-                border = BorderStroke(width = 3.dp, color = Color.Black)
-            ) {
-                Text(
-                    text = stringResource(R.string.head_to_calculator),
-                    fontFamily = FontFamily.Monospace,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Light,
-                    modifier = Modifier
-                        .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
 
-                )
-                Image(
-                    painter = painterResource(id = R.drawable.arrow),
-                    contentDescription = "Arrow",
-                    Modifier.size(50.dp)
-                )
-            }
+            Text(
+                text = "Your Results:",
+                fontFamily = FontFamily.Monospace,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
+            )
+            Text(
+                text = stringResource(R.string.variable),
+                fontFamily = FontFamily.Monospace,
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Light,
+                modifier = Modifier
+                    .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
+
+            )
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun HomePreview() {
+fun ResultPreview() {
     BMICalculatorTheme {
         BMIBeginningLayout(rememberNavController())
     }

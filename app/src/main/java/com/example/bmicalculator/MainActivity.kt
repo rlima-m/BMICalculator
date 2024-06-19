@@ -43,6 +43,7 @@ import androidx.navigation.NavController
 import com.example.bmicalculator.ui.theme.BMIBeginningLayout
 import com.example.bmicalculator.ui.theme.BMICalculatorTheme
 import com.example.bmicalculator.ui.theme.BMICalculatorLayout
+import com.example.bmicalculator.ui.theme.BMIResultLayout
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +58,8 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(navController, startDestination = "home") {
                         composable("home") { BMIBeginningLayout(navController) }
-                        composable("calculator") { BMICalculatorLayout() }
+                        composable("calculator") { BMICalculatorLayout(navController) }
+                        composable("results") { BMIResultLayout() }
                     }
                 }
             }
