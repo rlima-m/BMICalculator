@@ -24,7 +24,6 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -119,6 +118,7 @@ fun MetricSystemRow(metric: Boolean,
 }
 
 var bmi : Int = 0
+var age: Int = 0
 
 @Composable
 fun BMICalculatorLayout(navController : NavController) {
@@ -126,7 +126,8 @@ fun BMICalculatorLayout(navController : NavController) {
     var metric by remember { mutableStateOf(true) }
 
     var inputAge by remember { mutableStateOf("") }
-    //val iAge = inputAge.toIntOrNull() ?: 0
+    val got_age = inputAge.toIntOrNull() ?:0
+    age = got_age
 
     var inputWeight by remember { mutableStateOf("") }
     val iWeight = inputWeight.toDoubleOrNull() ?: 0.0
@@ -210,7 +211,7 @@ fun BMICalculatorLayout(navController : NavController) {
                 border = BorderStroke(width = 3.dp, color = Color.Black)
             ) {
                 Text(
-                    text = "Calculate now ",
+                    text = "Calculate now",
                     fontFamily = FontFamily.Monospace,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Light,
@@ -226,6 +227,10 @@ fun BMICalculatorLayout(navController : NavController) {
             }
         }
     }
+}
+
+fun getAge(): Number {
+    return age
 }
 fun getBMI(): Int {
     return bmi

@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeightIn
@@ -18,8 +17,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,10 +26,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
 import com.example.bmicalculator.R
 
 
@@ -40,6 +37,7 @@ import com.example.bmicalculator.R
 fun BMIResultLayout() {
 
     val bmi = getBMI()
+    val age = getAge()
 
     Column(modifier = Modifier
         .fillMaxHeight()
@@ -98,21 +96,80 @@ fun BMIResultLayout() {
                     .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
             )
 
-            //Fazer o mesmo para small messages
-
-            ///FALTA DEFINIR A CONDICAO
             if(bmi == 0){
-                Image(
-                    painter = painterResource(id = R.drawable.bmiweightchart),
-                    contentDescription = "Arrow",
-                    Modifier.size(50.dp),
+                Text(
+                    text = stringResource(R.string.zerobmi),
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .wrapContentWidth(Alignment.CenterHorizontally)
+                )
+            }else if(bmi < 18){
+                Text(
+                    text = stringResource(R.string.underweight),
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                )
+            }else if(bmi < 25){
+                Text(
+                    text = stringResource(R.string.healthy) ,
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .wrapContentWidth(Alignment.CenterHorizontally)
+                )
+            } else if(bmi < 30){
+                Text(
+                    text = stringResource(R.string.overweight) ,
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .wrapContentWidth(Alignment.CenterHorizontally)
+                )
+            }else if(bmi < 40){
+                Text(
+                    text = stringResource(R.string.obese),
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .wrapContentWidth(Alignment.CenterHorizontally)
                 )
             }else{
-                //PARA A TABELA PARA CRIANCAS
+                Text(
+                    text = stringResource(R.string.severely_obese),
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .wrapContentWidth(Alignment.CenterHorizontally)
+                )
+            }
                 Image(
-                    painter = painterResource(id = R.drawable.bmiweightchart),
+                    painter = painterResource(id = R.drawable.bmi_chart),
                     contentDescription = "Arrow",
-                    Modifier.size(500.dp),
+                    Modifier.size(350.dp),
+                )
+
+            if(age.toInt() < 20){
+                Text(
+                    text = stringResource(R.string.teen_child_disclaimer),
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .wrapContentWidth(Alignment.CenterHorizontally)
                 )
             }
         }

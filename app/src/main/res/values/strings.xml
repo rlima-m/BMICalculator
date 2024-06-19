@@ -14,4 +14,11 @@
     <string name="BMI_disclaimer_text">Body mass index (BMI) is a tool that healthcare providers use to estimate the amount of body fat by using your height and weight measurements. It can help assess risk factors for certain health conditions. The BMI is not always an accurate representation of body fatness. BMI alone does not diagnose health. Healthcare providers use BMI and other tools and tests to assess someone’s health status and risks. Don\'t take this test at face value, pair it with further tests.</string>
     <string name="variable">%d</string>
     <string name="your_results">Your Results:</string>
+    <string name="underweight">You\'re BMI indicates being underweight. Maybe check with a doctor.</string>
+    <string name="healthy">Congrats! According to BMI you\'re the perfect weight.</string>
+    <string name="overweight">Looks like you\'re a little over your ideal weight. Maybe check with your doctor about it</string>
+    <string name="obese">Looks like you\'re more overweight than you should. You should check with your doctor about this.</string>
+    <string name="severely_obese">Oh gee. Looks like your BMI is 40 or over, please speak with a healthcare professional about this.</string>
+    <string name="zerobmi">You know you didn\'t input thing right, right?</string>
+    <string name="teen_child_disclaimer">Please note that if you\'re either a child or teen, this may not apply to you the same way.</string>
 </resources>
