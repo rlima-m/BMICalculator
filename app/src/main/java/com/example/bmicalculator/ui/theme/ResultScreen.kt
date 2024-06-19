@@ -97,6 +97,24 @@ fun BMIResultLayout() {
                 modifier = Modifier
                     .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
             )
+
+            //Fazer o mesmo para small messages
+
+            ///FALTA DEFINIR A CONDICAO
+            if(bmi == 0){
+                Image(
+                    painter = painterResource(id = R.drawable.bmiweightchart),
+                    contentDescription = "Arrow",
+                    Modifier.size(50.dp),
+                )
+            }else{
+                //PARA A TABELA PARA CRIANCAS
+                Image(
+                    painter = painterResource(id = R.drawable.bmiweightchart),
+                    contentDescription = "Arrow",
+                    Modifier.size(500.dp),
+                )
+            }
         }
     }
 }
