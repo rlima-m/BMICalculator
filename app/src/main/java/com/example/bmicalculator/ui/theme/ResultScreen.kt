@@ -20,7 +20,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,18 +35,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.bmicalculator.R
-import java.time.format.TextStyle
 
 
 @Composable
 fun BMIResultLayout(navController : NavController) {
 
-    val bmi = getBMI()
-    val age = getAge()
-
     Column(modifier = Modifier
         .fillMaxHeight()
         .fillMaxWidth()
+        .background(color = Color(red = 215, green = 215, blue = 226, alpha = 168))
         .border(
             BorderStroke(width = 3.dp, color = Color.Black),
         )
@@ -76,7 +72,7 @@ fun BMIResultLayout(navController : NavController) {
             modifier = Modifier
                 .statusBarsPadding()
                 .padding(horizontal = 40.dp, vertical = 60.dp)
-                .verticalScroll(rememberScrollState()) //Important
+                .verticalScroll(rememberScrollState())
                 .safeDrawingPadding()
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -102,8 +98,8 @@ fun BMIResultLayout(navController : NavController) {
                     .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
             )
 
-            if(bmi == 0){
-                Text(
+            when(bmi) {
+                0 -> Text(
                     text = stringResource(R.string.zerobmi),
                     fontFamily = FontFamily.Monospace,
                     fontSize = 15.sp,
@@ -112,17 +108,17 @@ fun BMIResultLayout(navController : NavController) {
                     modifier = Modifier
                         .wrapContentWidth(Alignment.CenterHorizontally)
                 )
-            }else if(bmi < 18){
-                Text(
+
+                in 1..18 -> Text(
                     text = stringResource(R.string.underweight),
                     fontFamily = FontFamily.Monospace,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
                 )
-            }else if(bmi < 25){
-                Text(
-                    text = stringResource(R.string.healthy) ,
+
+                in 19..24 -> Text(
+                    text = stringResource(R.string.healthy),
                     fontFamily = FontFamily.Monospace,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
@@ -130,9 +126,9 @@ fun BMIResultLayout(navController : NavController) {
                     modifier = Modifier
                         .wrapContentWidth(Alignment.CenterHorizontally)
                 )
-            } else if(bmi < 30){
-                Text(
-                    text = stringResource(R.string.overweight) ,
+
+                in 25..29 -> Text(
+                    text = stringResource(R.string.overweight),
                     fontFamily = FontFamily.Monospace,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
@@ -140,8 +136,8 @@ fun BMIResultLayout(navController : NavController) {
                     modifier = Modifier
                         .wrapContentWidth(Alignment.CenterHorizontally)
                 )
-            }else if(bmi < 40){
-                Text(
+
+                in 30..39 -> Text(
                     text = stringResource(R.string.obese),
                     fontFamily = FontFamily.Monospace,
                     fontSize = 15.sp,
@@ -150,8 +146,8 @@ fun BMIResultLayout(navController : NavController) {
                     modifier = Modifier
                         .wrapContentWidth(Alignment.CenterHorizontally)
                 )
-            }else{
-                Text(
+
+                else -> Text(
                     text = stringResource(R.string.severely_obese),
                     fontFamily = FontFamily.Monospace,
                     fontSize = 15.sp,
@@ -163,11 +159,11 @@ fun BMIResultLayout(navController : NavController) {
             }
                 Image(
                     painter = painterResource(id = R.drawable.bmi_chart),
-                    contentDescription = "Arrow",
+                    contentDescription = stringResource(R.string.arrow),
                     Modifier.size(350.dp),
                 )
 
-            if(age.toInt() < 20){
+            if(age < 20){
                 Text(
                     text = stringResource(R.string.teen_child_disclaimer),
                     fontFamily = FontFamily.Monospace,
@@ -188,11 +184,11 @@ fun BMIResultLayout(navController : NavController) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.backwordsarrow),
-                    contentDescription = "Arrow",
+                    contentDescription = stringResource(R.string.backwards_arrow),
                     Modifier.size(50.dp)
                 )
                 Text(
-                    text = " Calculate Again",
+                    text = stringResource(R.string.calculate_again),
                     fontFamily = FontFamily.Monospace,
                     fontSize = 15.sp,
                     color = Color.Black,

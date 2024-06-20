@@ -23,4 +23,7 @@
     <string name="teen_child_disclaimer">Please note that if you\'re either a child or teen, this may not apply to you the same way.</string>
     <string name="calculate_now">"Calculate now "</string>
     <string name="disclaimer">** Disclaimer **</string>
+    <string name="calculate_again">" Calculate Again"</string>
+    <string name="backwards_arrow">Backwards Arrow</string>
+    <string name="arrow">Arrow</string>
 </resources>

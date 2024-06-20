@@ -41,7 +41,8 @@ fun BMIBeginningLayout(navController : NavController) {
 
     Column(modifier = Modifier
         .fillMaxHeight()
-        .verticalScroll(rememberScrollState()) //Important
+        .background(color = Color(red = 215, green = 215, blue = 226, alpha = 168))
+        .verticalScroll(rememberScrollState())
         .border(
             BorderStroke(width = 3.dp, color = Color.Black),
         )
@@ -115,7 +116,7 @@ fun BMIBeginningLayout(navController : NavController) {
                 )
                 Image(
                     painter = painterResource(id = R.drawable.arrow),
-                    contentDescription = "Arrow",
+                    contentDescription = stringResource(id = R.string.arrow),
                     Modifier.size(50.dp)
                 )
             }

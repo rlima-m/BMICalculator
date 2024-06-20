@@ -117,7 +117,7 @@ fun MetricSystemRow(metric: Boolean,
     }
 }
 
-var bmi : Int = 0
+var bmi: Int = 0
 var age: Int = 0
 
 @Composable
@@ -138,9 +138,10 @@ fun BMICalculatorLayout(navController : NavController) {
     bmi = if(iHeight > 0.0 && iWeight > 0.0) calculateBMI(metric, iWeight, iHeight) else 0
 
     Column(modifier = Modifier
-        .verticalScroll(rememberScrollState()) //Important
+        .verticalScroll(rememberScrollState())
+        .background(color = Color(red = 215, green = 215, blue = 226, alpha = 168))
         .border(
-            BorderStroke( width = 3.dp, color = Color.Black),
+            BorderStroke(width = 3.dp, color = Color.Black),
         )
     ) {
         Row(
@@ -222,21 +223,13 @@ fun BMICalculatorLayout(navController : NavController) {
                 )
                 Image(
                     painter = painterResource(id = R.drawable.arrow),
-                    contentDescription = "Arrow",
+                    contentDescription = stringResource(id = R.string.arrow),
                     Modifier.size(50.dp)
                 )
             }
         }
     }
 }
-
-fun getAge(): Number {
-    return age
-}
-fun getBMI(): Int {
-    return bmi
-}
-
 
 @Preview(showBackground = true)
 @Composable
